@@ -21,9 +21,9 @@ MyResume app is build using:
     -   [Compose](https://developer.android.com/jetpack/compose) -  A modern declarative way to build android ui
 
 # Links 
-Apk Link: [MyResume](https://google.com/drive.....)
+Apk Link: [https://drive.google.com/file/d/1KkGvaeRUMKxF3Nrg4bx_fxPyhnxehMHr/view?usp=share_link](https://drive.google.com/file/d/1KkGvaeRUMKxF3Nrg4bx_fxPyhnxehMHr/view?usp=share_link)
 
-Appetize.io Link: [https://apetize.io/........](https://Appetize.io)
+Appetize.io Link: [https://appetize.io/app/zmj4j3rm7daqaurkd5pdryamge](https://appetize.io/app/zmj4j3rm7daqaurkd5pdryamge)
 
 # Challenges face during development
 - User Interface design - App responsive in both potrait and landscape mode was a challenge. Used [Jetpack Compose](https://developer.android.com/jetpack/compose) to come up with responsive UI
@@ -31,4 +31,5 @@ Appetize.io Link: [https://apetize.io/........](https://Appetize.io)
 - Education
 - Skills
 - Experience
+- App Settings
 - Projects
