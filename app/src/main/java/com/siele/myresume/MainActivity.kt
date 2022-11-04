@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -54,15 +55,15 @@ fun MainContent(modifier: Modifier = Modifier) {
         ) {
 
             val aboutHeader = "About Me"
-            val serviceHeader = "Service"
+            val serviceHeader = "Services"
             val aboutDesc = "Hello, I a Siele Emmanuel a Native android developer " +
                     "who is simple, innovative and tech enthusiastic. I like building " +
                     "robust and scalable android application that provides " +
-                    "solutions requiring technical approaches"
+                    "solutions requiring technical approaches. Currently, working as a Hngi9 Mobile Intern"
             val serviceDesc =
-                "I help companies a come up solution to real-world problems through " +
-                        "building and developing robust and scalable native android " +
-                        "application in kotlin"
+                "I help companies come up solution to real-world problems through " +
+                        "research, analysis, building, and developing robust and scalable native android " +
+                        "application"
             if (this.maxWidth < 600.dp) {
                 Column(
                     modifier = modifier
@@ -82,7 +83,7 @@ fun MainContent(modifier: Modifier = Modifier) {
                             painter = painterResource(id = R.drawable._profile),
                             contentDescription = "Profile picture",
                             modifier = modifier
-                                .size(70.dp)
+                                .size(90.dp)
                                 .clip(RoundedCornerShape(10.dp))
                         )
                         Spacer(modifier = modifier.width(20.dp))
@@ -93,8 +94,18 @@ fun MainContent(modifier: Modifier = Modifier) {
                                 fontSize = 25.sp,
                                 fontWeight = FontWeight.Bold
                             )
-                            Spacer(modifier = modifier.heightIn(10.dp))
+                            Spacer(modifier = modifier.heightIn(5.dp))
                             Text(text = "Native Android Developer")
+                            Row(verticalAlignment = Alignment.CenterVertically){
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_location),
+                                    contentDescription = "Profile picture",
+                                    modifier = modifier
+                                        .size(24.dp)
+                                        .padding(end = 5.dp, top = 5.dp, bottom = 5.dp)
+                                )
+                            Text(text = "Nairobi, Kenya",  fontSize = 12.sp)
+                            }
                         }
                     }
 
@@ -141,6 +152,12 @@ fun MainContent(modifier: Modifier = Modifier) {
                         sectionName = serviceHeader,
                         desc = serviceDesc
                     )
+                    Spacer(modifier = modifier.heightIn(20.dp))
+                    Section(
+                        modifier = modifier,
+                        sectionName = "Skills",
+                        desc = "......."
+                    )
 
 
                 }
@@ -170,14 +187,26 @@ fun MainContent(modifier: Modifier = Modifier) {
                                     .size(70.dp)
                                     .clip(RoundedCornerShape(10.dp))
                             )
-                            Spacer(modifier = modifier.heightIn(10.dp))
+                            Spacer(modifier = modifier.heightIn(5.dp))
                             Text(
                                 text = "Siele Emmanuel ",
                                 fontSize = 25.sp,
                                 fontWeight = FontWeight.Bold
                             )
-                            Spacer(modifier = modifier.heightIn(10.dp))
+                            Spacer(modifier = modifier.heightIn(5.dp))
                             Text(text = "Native Android Developer")
+                            Row(verticalAlignment = Alignment.CenterVertically){
+                                Image(
+                                    painter = painterResource(id = R.drawable.ic_location),
+                                    contentDescription = "Profile picture",
+                                    modifier = modifier
+                                        .size(24.dp)
+                                        .padding(end = 5.dp, top = 5.dp, bottom = 5.dp)
+                                )
+                                Text(text = "Nairobi, Kenya",
+                                    fontSize = 12.sp
+                                )
+                            }
                             Spacer(modifier = modifier.heightIn(10.dp))
                             SocialMedia(icon = R.drawable.ic_github, mediaName = "Github", link = "https://github.com/sieleemmanuel")
                             Spacer(modifier = modifier.heightIn(10.dp))
@@ -272,29 +301,35 @@ private fun Section(modifier: Modifier, sectionName: String, desc: String) {
 
 @Composable
 private fun SocialMedia(modifier: Modifier = Modifier, icon: Int, mediaName: String, link:String) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-    ) {
-        Image(
-            painter = painterResource(id = icon),
-            contentDescription = mediaName,
+    Column {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
             modifier = modifier
-                .size(50.dp)
-                .padding(10.dp)
+        ) {
+            Image(
+                painter = painterResource(id = icon),
+                contentDescription = mediaName,
+                modifier = modifier
+                    .size(30.dp)
+                    .padding(end = 10.dp),
+                colorFilter = if(mediaName=="Github" || mediaName=="Email") {
+                    ColorFilter.tint(MaterialTheme.colors.onSurface)
+                }else{
+                    null
+                }
 
-        )
-        //Spacer(modifier = modifier.width(10.dp))
-        Column() {
+
+            )
             Text(
                 text = mediaName,
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold
             )
-            Text(text = link )
-        }
 
+        }
+        Text(text = link )
     }
+
 }
 
 @Preview(
