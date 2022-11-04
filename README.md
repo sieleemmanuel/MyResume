@@ -16,13 +16,13 @@ MyResume app is build using:
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Android’s recommended, modern toolkit for building native UI. It simplifies and accelerates UI development on Android.
 
 # Libraries in use
-- [Datastore](https://developer.android.com/topic/libraries/architecture/datastore) -  data storage solution that allows you to store key-value pairs. Used in thus app to store and retrive liht and darkmode values
-- Compose ui -
+- [Jetpack](https://developer.android.com/jetpack)
+    -   [Datastore](https://developer.android.com/topic/libraries/architecture/datastore) -  data storage solution that allows you to store key-value pairs. Used in this app to store and retrive light and dark mode values
+    -   [Compose](https://developer.android.com/jetpack/compose) -  A modern declarative way to build android ui
 
-# Apk Link -
-[MyResume](https://google.com/drive.....)
+# Links 
+Apk Link: [MyResume](https://google.com/drive.....)
 
-# Link to  Appetize.io
-[MyResume](https://Appetize.io)
+Appetize.io Link: [https://apetize.io/........](https://Appetize.io)
 
 # Challenges face during development
