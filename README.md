@@ -1,9 +1,9 @@
 # MyResume App
 # Description
-Hngi9 Intership task 2 challenge of developing
+Hngi9 Intership task 2 challenge. MyResume app build in Kotlin and Jetpack compose as mobile resume.
 
 # Features
-The application showcase:
+The application shows:
 - Name and title
 - Profile picture
 - About me
@@ -26,3 +26,9 @@ Apk Link: [MyResume](https://google.com/drive.....)
 Appetize.io Link: [https://apetize.io/........](https://Appetize.io)
 
 # Challenges face during development
+- User Interface design - App responsive in both potrait and landscape mode was a challenge. Used [Jetpack Compose](https://developer.android.com/jetpack/compose) to come up with responsive UI
+# Future feature implementation
+- Education
+- Skills
+- Experience
+- Projects
