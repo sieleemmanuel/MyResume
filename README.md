@@ -14,6 +14,7 @@ The application shows:
 MyResume app is build using:
 - [Kotlin](https://developer.android.com/kotlin) -modern statically typed programming language used to develop android applications. 
 - [Jetpack Compose](https://developer.android.com/jetpack/compose) - Android’s recommended, modern toolkit for building native UI. It simplifies and accelerates UI development on Android.
+- Design inspiration by [Rob Licau](https://dribbble.com/shots/5438724-Resume-Mobile-App-for-iOS-Black-White?utm_source=Pinterest_Shot&utm_campaign=RobertLicau&utm_content=Resume+Mobile+App+for+iOS+%28Black+%26+White%29&utm_medium=Social_Share)
 
 # Libraries in use
 - [Jetpack](https://developer.android.com/jetpack)
