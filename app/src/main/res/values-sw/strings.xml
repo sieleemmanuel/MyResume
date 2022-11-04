@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyResume</string>
+    <string name="about_me_label">Kuhusu mimi</string>
+    <string name="services_label">Huduma</string>
+    <string name="about_desc">Hujambo, mimi ni Siele Emmanuel Msanidi programu Asilia wa android ambaye ni rahisi, mbunifu na mwenye shauku ya kiufundi. Ninapenda kuunda utumizi thabiti na hatari wa android ambao hutoa masuluhisho yanayohitaji mbinu za kiufundi. Hivi sasa, anafanya kazi kama Hngi9 Mobile Intern</string>
+    <string name="service_desc">Ninasaidia makampuni kupata suluhu la matatizo ya ulimwengu halisi kupitia utafiti, uchanganuzi, ujenzi, na kutengeneza programu dhabiti na hatarishi za android.</string>
+    <string name="name_label">Siele Emmanuel</string>
+    <string name="title_label">Msanidi Asili wa Android</string>
+    <string name="location_label">Nairobi, Kenya</string>
+    <string name="github_label">Github</string>
+    <string name="linkedin_label">Linkedin</string>
+    <string name="email_label">Email</string>
+    <string name="email_link">sielekim.emmanuel@gmail.com</string>
+    <string name="twitter_label">Twitter</string>
+    <string name="twitter_link">https://twitter.com/sielekim</string>
+    <string name="linkedin_link">https://linkedin.com/in/siele-emmanuel</string>
+    <string name="github_link">https://github.com/sieleemmanuel</string>
+    <string name="skills_label">Ujuzi</string>
+    <string name="ellipsis_todo">.......</string>
+    <string name="language_label">Lugha</string>
+    <string name="select_lang_label">Chagua Lugha</string>
+</resources>

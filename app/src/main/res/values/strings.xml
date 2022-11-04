@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">MyResume</string>
+    <string name="about_me_label">About Me</string>
+    <string name="services_label">Services</string>
+    <string name="about_desc">Hello, I am Siele Emmanuel a Native android developer who is simple, innovative and tech enthusiastic. I like building robust and scalable android application that provides solutions requiring technical approaches. Currently, working as a Hngi9 Mobile Intern</string>
+    <string name="service_desc">I help companies come up solution to real-world problems through  research, analysis, building, and developing robust and scalable native android application</string>
+    <string name="name_label">Siele Emmanuel </string>
+    <string name="title_label">Native Android Developer</string>
+    <string name="location_label">Nairobi, Kenya</string>
+    <string name="github_label">Github</string>
+    <string name="linkedin_label">Linkedin</string>
+    <string name="email_label">Email</string>
+    <string name="email_link">sielekim.emmanuel@gmail.com</string>
+    <string name="twitter_label">Twitter</string>
+    <string name="twitter_link">https://twitter.com/sielekim</string>
+    <string name="linkedin_link">https://linkedin.com/in/siele-emmanuel</string>
+    <string name="github_link">https://github.com/sieleemmanuel</string>
+    <string name="skills_label">Skills</string>
+    <string name="ellipsis_todo">.......</string>
+    <string name="language_label">Language</string>
+    <string name="select_lang_label">Select Language</string>
 </resources>

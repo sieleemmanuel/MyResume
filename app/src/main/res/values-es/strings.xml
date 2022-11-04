@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">MyResume</string>
+    <string name="about_me_label">Sobre mí</string>
+    <string name="services_label">Servicios</string>
+    <string name="about_desc">Hola soy siele emmanuel un desarrollador nativo de Android que es simple, innovador y entusiasta de la tecnología. Me gusta crear una aplicación de Android robusta y escalable que proporcione soluciones que requieran enfoques técnicos. Actualmente, trabajando como pasante móvil Hngi9</string>
+    <string name="service_desc">Ayudo a las empresas a encontrar soluciones a problemas del mundo real a través de la investigación, el análisis, la creación y el desarrollo de aplicaciones nativas de Android sólidas y escalables.</string>
+    <string name="name_label" translatable="false">Siele Emmanuel</string>
+    <string name="title_label">Desarrollador nativo de Android</string>
+    <string name="location_label" translatable="false">Nairobi, Kenya</string>
+    <string name="github_label" translatable="false">Github</string>
+    <string name="linkedin_label" translatable="false">Linkedin</string>
+    <string name="email_label" translatable="false">Email</string>
+    <string name="email_link" translatable="false">sielekim.emmanuel@gmail.com</string>
+    <string name="twitter_label" translatable="false">Twitter</string>
+    <string name="twitter_link" translatable="false">https://twitter.com/sielekim</string>
+    <string name="linkedin_link" translatable="false">https://linkedin.com/in/siele-emmanuel</string>
+    <string name="github_link" translatable="false">https://github.com/sieleemmanuel</string>
+    <string name="ellipsis_todo">.......</string>
+    <string name="skills_label">Habilidades</string>
+    <string name="language_label">Idioma</string>
+    <string name="select_lang_label">Seleccione el idioma</string>
+
+</resources>
