@@ -19,4 +19,6 @@
     <string name="ellipsis_todo">.......</string>
     <string name="language_label">Language</string>
     <string name="select_lang_label">Select Language</string>
+    <string name="settings_label">Settings</string>
+    <string name="experience_label">Experience</string>
 </resources>
