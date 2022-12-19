@@ -8,7 +8,9 @@ The application shows:
 - Profile picture
 - About me
 - Social media links
-- Service to companies
+- Services to companies
+- Multi-language support
+- Dark and light modes
 
 # Tech stack
 MyResume app is build using:
