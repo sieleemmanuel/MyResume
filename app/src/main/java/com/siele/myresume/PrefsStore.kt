@@ -13,7 +13,6 @@ import kotlinx.coroutines.flow.map
 class PrefsStore(private val context:Context) {
 
     companion object{
-        private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name= "settings")
         val darkModeKey = booleanPreferencesKey("dark_mode")
         val langKey = stringPreferencesKey("lang")
 
