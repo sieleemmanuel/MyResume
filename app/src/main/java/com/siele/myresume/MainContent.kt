@@ -22,6 +22,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -84,7 +85,7 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                                 mediaName = stringResource(R.string.github_label),
                                 link = stringResource(R.string.github_link)
                             ){
-
+                                navController.navigate(Screen.WebViewScreen.route +"/https://github.com/sieleemmanuel")
                             }
                             SocialMedia(
                                     icon = R.drawable.ic_linkedin,
@@ -136,20 +137,30 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                             sectionName = stringResource(R.string.skills_label),
                             desc = null
                         )
+
                         Spacer(modifier = modifier.heightIn(20.dp))
                         SkillsSections()
+
+                        Spacer(modifier = modifier.heightIn(20.dp))
+                        Section(
+                            modifier = modifier,
+                            sectionName = "Education",
+                            desc = null
+                        )
                         Spacer(modifier = modifier.heightIn(20.dp))
                         Section(
                             modifier = modifier,
                             sectionName = stringResource(id = R.string.experience_label),
                             desc = null
                         )
+
+
                         Spacer(modifier = modifier.heightIn(20.dp))
                         ExperienceContent()
                     }
 
                 } else {
-
+/*
                     Column(
                         modifier = modifier
                             .fillMaxSize()
@@ -223,7 +234,7 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                         }
 
 
-                    }
+                    }*/
                 }
             }
         }
@@ -462,13 +473,20 @@ private fun SocialMedia(
 @Composable
 fun SkillsSections(modifier: Modifier = Modifier) {
     val state = rememberLazyGridState()
-    val skills = listOf("Kotlin", "Android SDK", "Jetpack Compose", "GitHub", "Java", "Dagger Hilt")
+    val skills = listOf(
+        Skill("Kotlin", R.drawable.ic_kotlin),
+        Skill("Android SDK", R.drawable.ic_android),
+        Skill("Jetpack Compose", R.drawable.ic_github),
+        Skill("GitHub", R.drawable.ic_github),
+        Skill( "Java", R.drawable.ic_java),
+        Skill( "Dagger Hilt", R.drawable.ic_dagger)
+                    )
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 112.dp),
         contentPadding = PaddingValues( 10.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.height(420.dp)
+        modifier = modifier.height(256.dp)
     ){
         items(skills.size){ skillPosition ->
             Card (
@@ -479,9 +497,23 @@ fun SkillsSections(modifier: Modifier = Modifier) {
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    Image(painter = painterResource(id = R.drawable.ic_twitter), contentDescription = null)
+                    Image(
+                        painter = painterResource(id = skills[skillPosition].icon),
+                        contentDescription = null,
+                        colorFilter = if (skills[skillPosition].skill == stringResource(id = R.string.github_label) ||
+                            skills[skillPosition].skill == stringResource(id = R.string.email_label)
+                        ) {
+                            ColorFilter.tint(MaterialTheme.colors.onSurface)
+                        } else {
+                            null
+                        }
+                    )
                     Spacer(modifier = modifier.heightIn(16.dp))
-                    Text(text = skills[skillPosition])
+                    Text(
+                        text = skills[skillPosition].skill,
+                        textAlign = TextAlign.Center,
+                        modifier = modifier.fillMaxWidth()
+                    )
                 }
             }
 
@@ -503,8 +535,8 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
         items(experiences.size){ position ->
             Row(modifier = modifier
                 .fillMaxWidth()
-                .wrapContentHeight()
-                .padding(start = 20.dp)) {
+                .height(IntrinsicSize.Max)
+                .padding(start = 20.dp, top = 0.dp)) {
                 Column(modifier = modifier
                     .fillMaxHeight()
                     .weight(.1f),
@@ -512,7 +544,7 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
                 ) {
                     Spacer(
                         modifier = modifier
-                            .height(24.dp)
+                            .height(40.dp)
                             .width(2.dp)
                             .padding(bottom = 5.dp)
                             .background(
@@ -525,25 +557,33 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
                     )
 
                     Box(modifier = modifier
-                        // .padding(5.dp)
-                        .border(
-                            width = 1.dp,
-                            color = MaterialTheme.colors.onSurface,
-                            shape = CircleShape
+                        .background(
+                            color = if (position == 0) {
+                                Color.Yellow
+                            } else {
+                                MaterialTheme.colors.onSurface
+                            }, shape = CircleShape
                         )
-                        .background(color = MaterialTheme.colors.onSurface, shape = CircleShape)
-                        .size(5.dp)
+                        .size(8.dp)
+                        .padding(2.dp)
+
+
+
                     )
                     Spacer(
                         modifier = modifier
-                            .height(40.dp)
+                            .fillMaxHeight()
                             .width(2.dp)
                             .padding(top = 5.dp)
                             .background(MaterialTheme.colors.onSurface)
+                            .offset(y = (-24).dp)
                     )
                 }
                 Spacer(modifier = modifier.width(20.dp))
-                Column(modifier = modifier.fillMaxWidth().weight(.8f)) {
+                Column(modifier = modifier
+                    .fillMaxWidth()
+                    .weight(.8f)
+                    .padding(top = 16.dp)) {
                     Text(text = experiences[position])
                     Text(text = "Forage Company")
                     Text(text = "Oct 2022 - Dec 2022", fontWeight = FontWeight.Light)
@@ -554,12 +594,17 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
         }
     }
 }
-@Preview(
+
+@Composable
+fun EducationSections(modifier: Modifier = Modifier) {
+
+}
+/*@Preview(
     showBackground = true,
     showSystemUi = true,
     //uiMode = UI_MODE_NIGHT_YES,
     //device = Devices.AUTOMOTIVE_1024p
-)
+)*/
 @Composable
 fun DefaultPreview() {
     MyResumeTheme {
