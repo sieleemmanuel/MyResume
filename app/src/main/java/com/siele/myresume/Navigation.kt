@@ -22,7 +22,9 @@ fun NavigationResGraph() {
                 }
             )
         ){ entry ->
-            WebViewContent(url = entry.arguments?.getString("url")!!, navController=navController)
+            WebViewContent(
+                url = entry.arguments?.getString("url")!!,
+                navController=navController)
         }
         composable(route= Screen.SettingsScreen.route){
             SettingsScreen(navController=navController)
