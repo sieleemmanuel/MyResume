@@ -1,5 +1,7 @@
 package com.siele.myresume
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.*
 import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.*
@@ -32,6 +34,8 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.siele.myresume.ui.theme.MyResumeTheme
 import kotlinx.coroutines.launch
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 
 @Composable
@@ -46,6 +50,7 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                     .padding(paddingValues)
             ) {
 
+                val context = LocalContext.current
                 val aboutHeader = stringResource(R.string.about_me_label)
                 val serviceHeader = stringResource(R.string.services_label)
                 val experienceHeader = stringResource(R.string.experience_label)
@@ -85,14 +90,28 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                                 mediaName = stringResource(R.string.github_label),
                                 link = stringResource(R.string.github_link)
                             ){
-                                navController.navigate(Screen.WebViewScreen.route +"/https://github.com/sieleemmanuel")
+                                val githubUrl =  URLEncoder.encode("https://github.com/sieleemmanuel", StandardCharsets.UTF_8.toString())
+                                navController.navigate(route=Screen.WebViewScreen.route +"/$githubUrl")
                             }
                             SocialMedia(
                                     icon = R.drawable.ic_linkedin,
                             mediaName = stringResource(R.string.linkedin_label),
                             link = stringResource(R.string.linkedin_link)
                             ){
-
+                                try{
+                                    val linkedInIntent = Intent().apply {
+                                        action = Intent.ACTION_VIEW
+                                        data = Uri.parse("https://linkedin.com/in/siele-emmanuel")
+                                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    }
+                                    context.startActivity(linkedInIntent)
+                                }catch (e:Exception) {
+                                    val linkedInUrl = URLEncoder.encode(
+                                        "https://linkedin.com/in/siele-emmanuel",
+                                        StandardCharsets.UTF_8.toString()
+                                    )
+                                    navController.navigate(route = Screen.WebViewScreen.route + "/$linkedInUrl")
+                                }
                             }
 
                             SocialMedia(
@@ -100,6 +119,13 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                             mediaName = stringResource(R.string.email_label),
                             link = stringResource(R.string.email_link)
                             ){
+                                val mailIntent = Intent().apply {
+                                    action = Intent.ACTION_SEND
+                                    type = "message/rfc822"
+                                    putExtra(Intent.EXTRA_EMAIL, arrayOf("sielekim.emmanuel@gmail.com"))
+                                    putExtra(Intent.EXTRA_SUBJECT, "Reach out to Siele")
+                                }
+                                context.startActivity(mailIntent)
 
                             }
                             SocialMedia(
@@ -107,13 +133,23 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
                                 mediaName = stringResource(R.string.twitter_label),
                                 link = stringResource(R.string.twitter_link)
                             ){
+                                try {
+                                    context.packageManager.getPackageInfo("com.twitter.android", 0)
+                                    val twitterIntent = Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=SieleKim") )
+                                    twitterIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                    context.startActivity(twitterIntent)
+                                }catch (e:Exception){
+                                    val twitterUrl =  URLEncoder.encode("https://twitter.com/sielekim", StandardCharsets.UTF_8.toString())
+                                    navController.navigate(route=Screen.WebViewScreen.route +"/$twitterUrl")
+                                }
 
                             }
                         }
 
                         Section(
                             modifier = modifier, sectionName = null,
-                            desc = aboutDesc
+                            desc = aboutDesc,
+                            sectionContent = null
                         )
 
                         Spacer(modifier = modifier.heightIn(20.dp))
@@ -126,37 +162,60 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
 
                         Spacer(modifier = modifier.heightIn(20.dp))
 
-                       /* Section(
-                            modifier = modifier,
-                            sectionName = serviceHeader,
-                            desc = serviceDesc,
-                        )
-                        Spacer(modifier = modifier.heightIn(20.dp))*/
                         Section(
                             modifier = modifier,
                             sectionName = stringResource(R.string.skills_label),
                             desc = null
-                        )
-
-                        Spacer(modifier = modifier.heightIn(20.dp))
-                        SkillsSections()
+                        ) {
+                            Spacer(modifier = modifier.heightIn(20.dp))
+                            SkillsSections()
+                        }
 
                         Spacer(modifier = modifier.heightIn(20.dp))
                         Section(
                             modifier = modifier,
-                            sectionName = "Education",
+                            sectionName = "Education & Certifications",
                             desc = null
-                        )
+                        ){
+                            Spacer(modifier = modifier.heightIn(20.dp))
+                            EducationContent(
+                                period = "Aug 2015 - Aug 2019",
+                                institution = "Murang'a University of Technology",
+                                program = "Bachelor of Science in Software Engineering"
+                            )
+                            Spacer(modifier = modifier.heightIn(16.dp))
+                            EducationContent(
+                                period = "Sep 2022",
+                                institution = "Cutshort",
+                                program = "Cutshort Certified Android Development"
+                            )
+
+                            Spacer(modifier = modifier.heightIn(16.dp))
+                            EducationContent(
+                                period = "Dec 2020",
+                                institution = "Google Africa Developer Scholarship",
+                                program = "Android Development Training"
+                            )
+
+                        }
                         Spacer(modifier = modifier.heightIn(20.dp))
                         Section(
                             modifier = modifier,
                             sectionName = stringResource(id = R.string.experience_label),
                             desc = null
-                        )
-
+                        ){
+                        ExperienceContent()
+                        }
 
                         Spacer(modifier = modifier.heightIn(20.dp))
-                        ExperienceContent()
+
+                         Section(
+                             modifier = modifier,
+                             sectionName = serviceHeader,
+                             desc = serviceDesc,
+                             sectionContent = null
+                         )
+                         Spacer(modifier = modifier.heightIn(20.dp))
                     }
 
                 } else {
@@ -242,6 +301,47 @@ fun MainContent(modifier: Modifier = Modifier, navController: NavController) {
     }
 
 
+}
+
+@Composable
+fun EducationContent(modifier:Modifier = Modifier, institution:String, period:String, program:String) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(IntrinsicSize.Max)
+    ) {
+        Column(
+            modifier = modifier
+                .weight(0.2f)
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Spacer(modifier = modifier.heightIn(10.dp))
+            Box(
+                modifier = modifier
+                    .size(5.dp)
+                    .background(
+                        color = MaterialTheme.colors.onSurface,
+                        shape = CircleShape
+                    )
+            )
+        }
+
+        Column(modifier.weight(0.8f)) {
+            Text(
+                text = institution,
+                fontWeight = FontWeight.ExtraBold
+            )
+            Text(
+                text = program,
+                fontWeight = FontWeight.Medium
+            )
+            Text(
+                text = period,
+                fontWeight = FontWeight.Light
+            )
+        }
+    }
 }
 
 @Composable
@@ -410,6 +510,7 @@ private fun Section(
     modifier: Modifier,
     sectionName: String?,
     desc: String?,
+    sectionContent: @Composable() (ColumnScope.()->Unit)?
 ) {
     if (sectionName != null) {
         Text(
@@ -430,6 +531,9 @@ private fun Section(
             .fillMaxWidth()
             .padding(16.dp)
     )
+    }
+    if (sectionContent != null) {
+        Column(content = sectionContent)
     }
 }
 
@@ -476,17 +580,18 @@ fun SkillsSections(modifier: Modifier = Modifier) {
     val skills = listOf(
         Skill("Kotlin", R.drawable.ic_kotlin),
         Skill("Android SDK", R.drawable.ic_android),
-        Skill("Jetpack Compose", R.drawable.ic_github),
+        Skill("Jetpack Compose", R.drawable.ic_compose),
         Skill("GitHub", R.drawable.ic_github),
         Skill( "Java", R.drawable.ic_java),
         Skill( "Dagger Hilt", R.drawable.ic_dagger)
                     )
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 112.dp),
+        columns = GridCells.Adaptive(minSize = 90.dp),
         contentPadding = PaddingValues( 10.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp),
         horizontalArrangement = Arrangement.spacedBy(16.dp),
-        modifier = modifier.height(256.dp)
+        modifier = modifier.height(448.dp),
+        userScrollEnabled = false
     ){
         items(skills.size){ skillPosition ->
             Card (
@@ -525,12 +630,16 @@ fun SkillsSections(modifier: Modifier = Modifier) {
 @Composable
 fun ExperienceContent(modifier: Modifier = Modifier) {
     val state = rememberLazyGridState()
-    val experiences = listOf("Android Engineer", "Android Intern", "Mobile Intern", "Mobile Engineering Program Intern")
+    val experiences = listOf(
+        Experience( title = "Mobile Intern", company = "HNG", period = "Oct 2022 - Dec 2022"),
+        Experience( title = "Mobile Engineering Program Intern", company = "Forage", period = "May 2022 - May 2022")
+    )
 
     LazyColumn(modifier = modifier
         .fillMaxWidth()
-        .height(320.dp),
-        contentPadding = PaddingValues(16.dp)
+        .height(200.dp),
+        contentPadding = PaddingValues(16.dp),
+        userScrollEnabled = false
     ){
         items(experiences.size){ position ->
             Row(modifier = modifier
@@ -558,17 +667,10 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
 
                     Box(modifier = modifier
                         .background(
-                            color = if (position == 0) {
-                                Color.Yellow
-                            } else {
-                                MaterialTheme.colors.onSurface
-                            }, shape = CircleShape
-                        )
+                            color = MaterialTheme.colors.onSurface,
+                            shape = CircleShape)
                         .size(8.dp)
                         .padding(2.dp)
-
-
-
                     )
                     Spacer(
                         modifier = modifier
@@ -576,17 +678,17 @@ fun ExperienceContent(modifier: Modifier = Modifier) {
                             .width(2.dp)
                             .padding(top = 5.dp)
                             .background(MaterialTheme.colors.onSurface)
-                            .offset(y = (-24).dp)
+
                     )
                 }
                 Spacer(modifier = modifier.width(20.dp))
                 Column(modifier = modifier
                     .fillMaxWidth()
-                    .weight(.8f)
-                    .padding(top = 16.dp)) {
-                    Text(text = experiences[position])
-                    Text(text = "Forage Company")
-                    Text(text = "Oct 2022 - Dec 2022", fontWeight = FontWeight.Light)
+                    .weight(.8f)) {
+                    Spacer(modifier = modifier.heightIn(20.dp))
+                    Text(text = experiences[position].title, fontWeight = FontWeight.Bold)
+                    Text(text = experiences[position].company, fontWeight = FontWeight.Medium)
+                    Text(text = experiences[position].period, fontWeight = FontWeight.Light)
                 }
 
             }
